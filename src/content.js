@@ -14,6 +14,7 @@ async function getHistoryObjects() {
   return ((await readLocalStorage("AWS-HISTORY")) || []).sort((a, b) => b.counter - a.counter);
 }
 
+
 window.onload = function() {
   // chrome.storage.local.set({"AWS-HISTORY": []});
 }
@@ -211,6 +212,8 @@ position: fixed; box-shadow: 0px 12px 48px rgba(29, 5, 64, 0.32);
       </tr>
       `;
 
+    console.log(history);
+  console.log("TAB:", document.URL);
     for (let i = 0; i < history.length; i++) {
         const row = history[i];
         innerHtml += `<tr class="TableRow" id="row${i}">

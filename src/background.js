@@ -40,7 +40,7 @@ function getAccountId() {  // TODO
     return "256063301105"
 }
 
-function getDDBLumigoUrl(name) {
+function getResourceLumigoUrl(name) {
     return `https://platform.lumigo.io/explore?timespan=LAST_HOUR&distributionFilters=%7B%22resource%22:%5B%7B%22exclude%22:false,%22id%22:%22resource%22,%22value%22:%22${name}%22,%22ui%22:%7B%22displayName%22:%22Resource:%20${name}%22%7D%7D%5D%7D`
 }
 
@@ -66,7 +66,14 @@ function urlToHistoryObject(url) {
             url = url.replace(name, cleanName);
             name = cleanName;
         }
-        return {name, url, service: "dynamodb-table", ...commonObj, lumigoUrl: getDDBLumigoUrl(name)}
+        return {name, url, service: "dynamodb-table", ...commonObj, lumigoUrl: getResourceLumigoUrl(name)}
+    }
+
+    if (url.includes("https://s3.console.aws.amazon.com/s3") && url.includes("buckets/")) {
+        const regex = new RegExp("https:\\/\\/s3\\.console\\.aws\\.amazon\\.com\\/s3\\/buckets\\/(.*)\\?region=(.*)&", "g");
+
+        const groups = regex.exec(url);
+        return {name: groups[1], url, service: "s3-bucket",region: groups[2],counter: 1 , lumigoUrl: getResourceLumigoUrl(name)}
     }
 }
 
