@@ -40,6 +40,10 @@ function getAccountId() {  // TODO
     return "256063301105"
 }
 
+function getDDBLumigoUrl(name) {
+    return `https://platform.lumigo.io/explore?timespan=LAST_HOUR&distributionFilters=%7B%22resource%22:%5B%7B%22exclude%22:false,%22id%22:%22resource%22,%22value%22:%22${name}%22,%22ui%22:%7B%22displayName%22:%22Resource:%20${name}%22%7D%7D%5D%7D`
+}
+
 function urlToHistoryObject(url) {
     const region = url.split("//")[1].split(".")[0]
     const commonObj = {counter: 1, region}
@@ -54,6 +58,15 @@ function urlToHistoryObject(url) {
             name = cleanName;
         }
         return {name, url, service: "lambda-function", ...commonObj, lumigoUrl: getLumigoUrl(name, region)}
+    }
+    if (url.includes("console.aws.amazon.com/dynamodb/") && url.includes("#tables:selected=")) {
+        let name = url.split("#tables:selected=")[1];
+        if (name.includes(";")) {
+            const cleanName = name.split(";")[0];
+            url = url.replace(name, cleanName);
+            name = cleanName;
+        }
+        return {name, url, service: "dynamodb-table", ...commonObj, lumigoUrl: getDDBLumigoUrl(name)}
     }
 }
 
