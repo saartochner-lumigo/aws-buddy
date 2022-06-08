@@ -1,5 +1,5 @@
 window.onload = function() {
-  chrome.storage.local.set({"AWS-HISTORY": []});
+  // chrome.storage.local.set({"AWS-HISTORY": []});
 }
 
 window.addEventListener("popup-modal", function(evt) {
