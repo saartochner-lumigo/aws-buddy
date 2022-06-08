@@ -45,12 +45,14 @@ function getResourceLumigoUrl(name) {
 }
 
 function urlToHistoryObject(url) {
-    const urlParams = new URLSearchParams(url);
+
     const region = url.split("//")[1].split(".")[0]
     const commonObj = {counter: 1, region}
     if (!url.includes("console.aws.amazon.com")) {
         return null
     }
+    const urlParams = new URLSearchParams(url);
+    console.log("URL", url)
     if (url.includes("console.aws.amazon.com/lambda/") && url.includes("/functions/")) {
         let name = url.split("/")[url.split("/").length - 1];
         if (name.includes("?")) {
@@ -70,17 +72,22 @@ function urlToHistoryObject(url) {
         return {name, url, service: "dynamodb-table", ...commonObj, lumigoUrl: getResourceLumigoUrl(name)}
     }
 
-
-    if (url.includes("console.aws.amazon.com/dynamodbv2") && url.includes("buckets/")) {
+    if (url.includes("s3.console.aws.amazon.com/s3") && url.includes("buckets/")) {
         const regex = new RegExp("https:\\/\\/s3\\.console\\.aws\\.amazon\\.com\\/s3\\/buckets\\/(.*)\\?region=(.*)&", "g");
 
         const groups = regex.exec(url);
         return {name: groups[1], url, service: "s3-bucket",region: groups[2],counter: 1 , lumigoUrl: getResourceLumigoUrl(name)}
     }
 
-    if (url.includes("console.aws.amazon.com/dynamodbv2") && urlParams.get('name') && urlParams.get('region')) {
-
-        return {name: urlParams.get('name'), url, service: "dynamodb-table",region: urlParams.get('region'),counter: 1 , lumigoUrl: getResourceLumigoUrl(urlParams.get('name'))}
+    if (url.includes("console.aws.amazon.com/dynamodbv2") && urlParams.get('name')) {
+        const regex = new RegExp("https:\\/\\/us-east-1\\.console\\.aws\\.amazon\\.com\\/dynamodbv2.*?region=(.*?)#.*", "g");
+        const groups = regex.exec(url);
+        return {name: urlParams.get('name'), url, service: "dynamodb-table",region: groups[1],counter: 1 , lumigoUrl: getResourceLumigoUrl(urlParams.get('name'))}
+    }
+    console.log("IN URL")
+    if (url.includes("console.aws.amazon.com/dynamodbv2")) {
+        console.log(urlParams.get('name'))
+        console.log(urlParams.get('region'))
     }
 }
 
