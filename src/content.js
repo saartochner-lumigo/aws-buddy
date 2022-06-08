@@ -57,6 +57,11 @@ if (document.body) {
   appendAESR();
 }
 
+window.onload = function() {
+  alert("Here Nir!");
+}
+
+
 (chrome || browser).runtime.onMessage.addListener(function(msg, sender, cb) {
   const { data, action } = msg;
   if (action === 'loadInfo') {

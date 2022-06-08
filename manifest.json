@@ -12,11 +12,11 @@
       "matches": [
         "https://*.console.aws.amazon.com/*"
       ],
-      "all_frames": true,
+      "all_frames": false,
       "js": [
         "js/content.js"
       ],
-      "run_at": "document_idle"
+      "run_at": "document_start"
     }
   ],
   "options_ui": {
