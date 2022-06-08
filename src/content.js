@@ -49,51 +49,34 @@ window.addEventListener("popup-modal", function(evt) {
 
 function myFunction() {
   // Declare variables
-  var input, filter, table, tr, td, i, txtValue, service, serviceTxtValue, region, regionTxtValue;
+  var input, filter, table, tr, resourceName, i, txtValue, service, serviceTxtValue, region, regionTxtValue;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   const filters = filter.split(" ").filter(t => t !== "")
+  console.log("filters",filters)
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
 
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
     service = tr[i].getElementsByTagName("td")[0];
+    resourceName = tr[i].getElementsByTagName("td")[1];
     region = tr[i].getElementsByTagName("td")[2];
-    console.log("td",td)
-    console.log("service",service)
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      filters.forEach(filter => {
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
-          } else {
-              tr[i].style.display = "none";
-          }
-      })
-    }
-    if (service) {
-      txtValue = td.textContent || td.innerText;
+    if(service || resourceName || region){
+      txtValue = resourceName.textContent || resourceName.innerText;
       serviceTxtValue = service.textContent || service.innerText;
-      filters.forEach(filter => {
-          if (serviceTxtValue.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
-          } else {
-              tr[i].style.display = "none";
-          }
-      })
-    }
-
-    if (region) {
-      txtValue = td.textContent || td.innerText;
       regionTxtValue = region.textContent || region.innerText;
+      console.log("resourceName",txtValue)
       filters.forEach(filter => {
-          if (regionTxtValue.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
-          } else {
-              tr[i].style.display = "none";
-          }
+        if (
+          txtValue.toUpperCase().indexOf(filter) > -1 ||
+          serviceTxtValue.toUpperCase().indexOf(filter) > -1 ||
+          regionTxtValue.toUpperCase().indexOf(filter) > -1
+        ) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
       })
     }
   }
