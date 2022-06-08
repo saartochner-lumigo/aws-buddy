@@ -49,22 +49,52 @@ window.addEventListener("popup-modal", function(evt) {
 
 function myFunction() {
   // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
+  var input, filter, table, tr, td, i, txtValue, service, serviceTxtValue, region, regionTxtValue;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
+  const filters = filter.split(" ").filter(t => t !== "")
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
 
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[1];
+    service = tr[i].getElementsByTagName("td")[0];
+    region = tr[i].getElementsByTagName("td")[2];
+    console.log("td",td)
+    console.log("service",service)
     if (td) {
       txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
+      filters.forEach(filter => {
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+          } else {
+              tr[i].style.display = "none";
+          }
+      })
+    }
+    if (service) {
+      txtValue = td.textContent || td.innerText;
+      serviceTxtValue = service.textContent || service.innerText;
+      filters.forEach(filter => {
+          if (serviceTxtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+          } else {
+              tr[i].style.display = "none";
+          }
+      })
+    }
+
+    if (region) {
+      txtValue = td.textContent || td.innerText;
+      regionTxtValue = region.textContent || region.innerText;
+      filters.forEach(filter => {
+          if (regionTxtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+          } else {
+              tr[i].style.display = "none";
+          }
+      })
     }
   }
 }

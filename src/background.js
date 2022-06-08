@@ -69,11 +69,17 @@ function urlToHistoryObject(url) {
         return {name, url, service: "dynamodb-table", ...commonObj, lumigoUrl: getResourceLumigoUrl(name)}
     }
 
-    if (url.includes("https://s3.console.aws.amazon.com/s3") && url.includes("buckets/")) {
+
+    if (url.includes("console.aws.amazon.com/dynamodbv2") && url.includes("buckets/")) {
         const regex = new RegExp("https:\\/\\/s3\\.console\\.aws\\.amazon\\.com\\/s3\\/buckets\\/(.*)\\?region=(.*)&", "g");
 
         const groups = regex.exec(url);
         return {name: groups[1], url, service: "s3-bucket",region: groups[2],counter: 1 , lumigoUrl: getResourceLumigoUrl(name)}
+    }
+
+    if (url.includes("console.aws.amazon.com/dynamodbv2") && url.includes("table")&& url.includes("name")) {
+        const urlParams = new URLSearchParams(url);
+        return {name: urlParams.get('name'), url, service: "dynamodb-table",region: urlParams.get('region'),counter: 1 , lumigoUrl: getResourceLumigoUrl(urlParams.get('name'))}
     }
 }
 
