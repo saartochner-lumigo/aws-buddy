@@ -53,6 +53,7 @@ window.onload = function() {
   //
   // main();
   alert("Here 1111111");
+  window.close(); // To close the popup after finish
 }
 
 function main() {
