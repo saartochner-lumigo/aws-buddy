@@ -2,7 +2,16 @@
   "name": "AWS Buddy",
   "description": "AWS console helper",
   "short_name": "AWS Buddy",
-  "permissions": ["activeTab", "storage", "alarms", "tabs", "extension"],
+  "permissions": [
+    "activeTab",
+    "storage",
+    "alarms",
+    "tabs",
+    "extension"
+  ],
+  "icons" : {
+    "48": "icons/Icon_48x48.png"
+  },
   "browser_action": {
     "default_title": "AWS Extend Switch Roles",
     "default_popup": "popup.html"
