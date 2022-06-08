@@ -106,7 +106,7 @@ position: fixed; box-shadow: 0px 12px 48px rgba(29, 5, 64, 0.32);
     for (let i = 0; i < history.length; i++) {
         const row = history[i];
         console.log(row);
-        innerHtml += `<tr>
+        innerHtml += `<tr id="row${i}">
             <td>${row.service}</td>
             <td>${row.name}</td>
             <td>${row.region}</td>
@@ -119,7 +119,10 @@ position: fixed; box-shadow: 0px 12px 48px rgba(29, 5, 64, 0.32);
     modal.innerHTML = innerHtml;
     document.body.appendChild(modal);
     document.getElementById("myInput").addEventListener("keyup", myFunction);
-    const dialog = document.querySelector("dialog");
+    for (let i = 0; i < history.length; i++) {
+        document.getElementById(`row${i}`).addEventListener("click", () => window.location.replace(history[i].url));
+    }
+    const dialog = document.querySelector("dialog:last-child");
     dialog.showModal();
 }
 
