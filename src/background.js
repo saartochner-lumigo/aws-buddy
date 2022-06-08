@@ -26,6 +26,20 @@ async function addHistoryObject(obj) {
   await saveHistoryObjects(historyObjects);
 }
 
+function getLambdaFunctionArn(name, region) {
+    return `arn:aws:lambda:${region}:${getAccountId()}:function:${name}`;
+}
+
+function getLumigoUrl(name, region) {
+    const arn = getLambdaFunctionArn(name, region);
+    return `https://platform.lumigo.io/invocations/${arn}`;
+}
+
+function getAccountId() {  // TODO
+    // return document.getElementsByClassName("globalNav-0336")[0].firstChild.childNodes[1].firstChild.data.replace("-", "").replace("-", "");
+    return "256063301105"
+}
+
 function urlToHistoryObject(url) {
     const region = url.split("//")[1].split(".")[0]
     const commonObj = {counter: 1, region}
@@ -39,7 +53,7 @@ function urlToHistoryObject(url) {
             url = url.replace(name, cleanName);
             name = cleanName;
         }
-        return {name, url, service: "lambda-function", ...commonObj}
+        return {name, url, service: "lambda-function", ...commonObj, lumigoUrl: getLumigoUrl(name, region)}
     }
 }
 
