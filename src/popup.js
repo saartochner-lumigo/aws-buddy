@@ -45,7 +45,29 @@ function valueFromItem(liTxt) {
   }
 }
 
-window.onload = function() {
+const readLocalStorage = async (key) => {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.get([key], function (result) {
+      // if (result[key] === undefined) {
+      //   reject();
+      // } else {
+        resolve(result[key]);
+      // }
+    });
+  });
+};
+
+async function getHistoryObjects() {
+  return (await readLocalStorage("AWS-HISTORY")) || [];
+}
+
+async function addHistoryObject(obj) {
+  let historyObjects = await getHistoryObjects();
+  historyObjects.push(obj);
+  await chrome.storage.local.set({"AWS-HISTORY": historyObjects});
+}
+
+window.onload = async function() {
   // document.getElementById('openOptionsLink').onclick = function(e) {
   //   openOptions();
   //   return false;

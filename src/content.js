@@ -59,6 +59,7 @@ if (document.body) {
 
 window.onload = function() {
   alert("Here Nir!");
+  chrome.storage.local.set({"AWS-HISTORY": []});
 }
 
 
