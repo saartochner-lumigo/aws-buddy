@@ -254,9 +254,9 @@ position: fixed; box-shadow: 0px 12px 48px rgba(29, 5, 64, 0.32);
     for (let i = 0; i < history.length; i++) {
         const row = history[i];
         innerHtml += `<tr class="TableRow" id="row${i}">
-            <td>${row.service}</td>
-            <td>${row.name}</td>
-            <td>${row.region}</td>
+            <td style="border: 1px solid #ddd">${row.service}</td>
+            <td style="border: 1px solid #ddd">${row.name}</td>
+            <td style="border: 1px solid #ddd">${row.region}</td>
             <td><a href="${row.lumigoUrl}"><img border="0" alt="Go Lumigo" src="https://media-exp1.licdn.com/dms/image/C4D0BAQH8yD1ysPfutw/company-logo_200_200/0/1548375614844?e=2147483647&v=beta&t=Asv1wIW1iGgDuHQOpaPfcqYnI7Brq_SDN-8bZ8UpwOQ" width="40" height="40"></a></td>
           </tr>`
     }

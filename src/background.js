@@ -41,7 +41,7 @@ function getAccountId() {  // TODO
 }
 
 function getResourceLumigoUrl(name) {
-    return `https://platform.lumigo.io/explore?timespan=LAST_HOUR&distributionFilters=%7B%22resource%22:%5B%7B%22exclude%22:false,%22id%22:%22resource%22,%22value%22:%22${name}%22,%22ui%22:%7B%22displayName%22:%22Resource:%20${name}%22%7D%7D%5D%7D`
+    return `https://platform.lumigo.io/explore?timespan=LAST_7_DAYS&distributionFilters=%7B%22resource%22:%5B%7B%22exclude%22:false,%22id%22:%22resource%22,%22value%22:%22${name}%22,%22ui%22:%7B%22displayName%22:%22Resource:%20${name}%22%7D%7D%5D%7D`
 }
 
 function urlToHistoryObject(url) {
