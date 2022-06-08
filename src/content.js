@@ -58,8 +58,8 @@ background-color:white;
 position: fixed; box-shadow: 0px 12px 48px rgba(29, 5, 64, 0.32);
 `
     );
-    // const history = await getHistoryObjects();
-    const history = [
+
+    const mockData = [
     {
         "counter": 1,
         "lumigoUrl": "https://platform.lumigo.io/invocations/arn:aws:lambda:us-west-2:256063301105:function:saart_resources-details-stls3_update-issues",
@@ -149,6 +149,7 @@ position: fixed; box-shadow: 0px 12px 48px rgba(29, 5, 64, 0.32);
         "url": "https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2#/functions/saart_logs_new-customer-role"
     }
 ];
+    const history = [...(await getHistoryObjects()), ...mockData];
     let innerHtml =  `<input type="text" id="myInput" placeholder="Search for names..">
 <style>
 #myInput {
@@ -213,7 +214,6 @@ position: fixed; box-shadow: 0px 12px 48px rgba(29, 5, 64, 0.32);
       `;
 
     console.log(history);
-  console.log("TAB:", document.URL);
     for (let i = 0; i < history.length; i++) {
         const row = history[i];
         innerHtml += `<tr class="TableRow" id="row${i}">
