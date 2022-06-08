@@ -1,5 +1,5 @@
 {
-  "name": "aws-extend-switch-roles",
+  "name": "aws-buddy",
   "version": "2.0.4",
   "description": "Extend your AWS IAM switching roles by Chrome extension",
   "main": "index.js",
