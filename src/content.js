@@ -14,9 +14,33 @@ async function getHistoryObjects() {
   return ((await readLocalStorage("AWS-HISTORY")) || []).sort((a, b) => b.counter - a.counter);
 }
 
+const colorLogs = () => {
+    const iframe = document.getElementById("microConsole-Logs");
+    if (iframe) {
+        const logs = iframe.contentWindow.document
+          .querySelectorAll("[data-testid=logs__log-events-table__message]");
+        if (logs.length > 0) {
+            logs.forEach(row => {
+              if (row.innerText.toLowerCase().includes("error")) {
+                  row.innerHTML = `<div style="color:red">${row.innerText}</div>`
+              } else if (row.innerText.toLowerCase().includes("warn")) {
+                  row.innerHTML = `<div style="color:orange">${row.innerText}</div>`
+              } else if (row.innerText.startsWith("START RequestId: ")) {
+                  const requestId = row.innerText.match("START RequestId: ([a-z0-9\-]{36}).*")[1]
+                  const url = `https://platform.lumigo.io/explore?timespan=LAST_7_DAYS&searchTerm=${requestId}`;
+                  const randomId = (Math.random() + 1).toString(36);
+                  row.innerHTML = row.innerText + `<img border="0" id="${randomId}" alt="Go Lumigo" src="https://media-exp1.licdn.com/dms/image/C4D0BAQH8yD1ysPfutw/company-logo_200_200/0/1548375614844?e=2147483647&v=beta&t=Asv1wIW1iGgDuHQOpaPfcqYnI7Brq_SDN-8bZ8UpwOQ" width="40" height="40">`
+                  iframe.contentWindow.document.getElementById(randomId).addEventListener("click", () => window.location.replace(url));
+              }
+            })
+            return true;
+      }
+    }
+    setTimeout(colorLogs, 500);
+}
 
 window.onload = function() {
-  // chrome.storage.local.set({"AWS-HISTORY": []});
+  colorLogs();
 }
 
 window.addEventListener("popup-modal", function(evt) {
