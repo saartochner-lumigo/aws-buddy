@@ -11,7 +11,7 @@ const readLocalStorage = async (key) => {
 };
 
 async function getHistoryObjects() {
-  return (await readLocalStorage("AWS-HISTORY")) || [];
+  return ((await readLocalStorage("AWS-HISTORY")) || []).sort((a, b) => b.counter - a.counter);
 }
 
 window.onload = function() {
