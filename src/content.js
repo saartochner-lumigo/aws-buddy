@@ -25,12 +25,6 @@ This is our content
     document.body.appendChild(modal);
     const dialog = document.querySelector("dialog");
     dialog.showModal();
-    const iframe = document.getElementById("popup-content");
-    // iframe.src = chrome.extension.getURL("index.html");
-    iframe.frameBorder = 0;
-    dialog.querySelector("button").addEventListener("click", () => {
-        dialog.close();
-    });
 }
 
 
