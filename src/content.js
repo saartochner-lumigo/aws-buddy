@@ -48,26 +48,127 @@ const showBuddyModal = async () => {
     const modal = document.createElement("dialog");
     modal.setAttribute(
         "style", `
-height:300px;
+height:50%;
 width: 50%;
 border: none;
 top:150px;
-border-radius:20px;
+border-radius:8px;
 background-color:white;
 position: fixed; box-shadow: 0px 12px 48px rgba(29, 5, 64, 0.32);
 `
     );
-    const history = await getHistoryObjects();
+    // const history = await getHistoryObjects();
+    const history = [
+    {
+        "counter": 1,
+        "lumigoUrl": "https://platform.lumigo.io/invocations/arn:aws:lambda:us-west-2:256063301105:function:saart_resources-details-stls3_update-issues",
+        "name": "saart_resources-details-stls3_update-issues",
+        "region": "us-west-2",
+        "service": "lambda-function",
+        "url": "https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2#/functions/saart_resources-details-stls3_update-issues"
+    },
+    {
+        "counter": 2,
+        "lumigoUrl": "https://platform.lumigo.io/invocations/arn:aws:lambda:us-west-2:256063301105:function:saart_customers-service_write",
+        "name": "saart_customers-service_write",
+        "region": "us-west-2",
+        "service": "lambda-function",
+        "url": "https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2#/functions/saart_customers-service_write"
+    },
+    {
+        "counter": 2,
+        "lumigoUrl": "https://platform.lumigo.io/invocations/arn:aws:lambda:us-west-2:256063301105:function:tracer-test-saart-python37_step_function",
+        "name": "tracer-test-saart-python37_step_function",
+        "region": "us-west-2",
+        "service": "lambda-function",
+        "url": "https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2#/functions/tracer-test-saart-python37_step_function"
+    },
+    {
+        "counter": 2,
+        "lumigoUrl": "https://platform.lumigo.io/invocations/arn:aws:lambda:us-west-2:256063301105:function:1-e2e-test-24208",
+        "name": "1-e2e-test-24208",
+        "region": "us-west-2",
+        "service": "lambda-function",
+        "url": "https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2#/functions/1-e2e-test-24208"
+    },
+    {
+        "counter": 2,
+        "lumigoUrl": "https://platform.lumigo.io/invocations/arn:aws:lambda:us-west-2:256063301105:function:saart_trc-inges-stsls_get-function-execution-tags",
+        "name": "saart_trc-inges-stsls_get-function-execution-tags",
+        "region": "us-west-2",
+        "service": "lambda-function",
+        "url": "https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2#/functions/saart_trc-inges-stsls_get-function-execution-tags"
+    },
+    {
+        "counter": 2,
+        "lumigoUrl": "https://platform.lumigo.io/invocations/arn:aws:lambda:us-west-2:256063301105:function:saart_job-manager-stsls_status-by-status-id",
+        "name": "saart_job-manager-stsls_status-by-status-id",
+        "region": "us-west-2",
+        "service": "lambda-function",
+        "url": "https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2#/functions/saart_job-manager-stsls_status-by-status-id"
+    },
+    {
+        "counter": 2,
+        "lumigoUrl": "https://platform.lumigo.io/invocations/arn:aws:lambda:us-west-2:256063301105:function:saart_trc-inges-stsls_finish-get-transaction-job-v2",
+        "name": "saart_trc-inges-stsls_finish-get-transaction-job-v2",
+        "region": "us-west-2",
+        "service": "lambda-function",
+        "url": "https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2#/functions/saart_trc-inges-stsls_finish-get-transaction-job-v2"
+    },
+    {
+        "counter": 2,
+        "lumigoUrl": "https://platform.lumigo.io/invocations/arn:aws:lambda:us-west-2:256063301105:function:saart_trc-inges-stsls_get-single-transaction-async-v2",
+        "name": "saart_trc-inges-stsls_get-single-transaction-async-v2",
+        "region": "us-west-2",
+        "service": "lambda-function",
+        "url": "https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2#/functions/saart_trc-inges-stsls_get-single-transaction-async-v2"
+    },
+    {
+        "counter": 2,
+        "lumigoUrl": "https://platform.lumigo.io/invocations/arn:aws:lambda:us-west-2:256063301105:function:saart_resources-details-stls_push-insight-metrics",
+        "name": "saart_resources-details-stls_push-insight-metrics",
+        "region": "us-west-2",
+        "service": "lambda-function",
+        "url": "https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2#/functions/saart_resources-details-stls_push-insight-metrics"
+    },
+    {
+        "counter": 2,
+        "lumigoUrl": "https://platform.lumigo.io/invocations/arn:aws:lambda:us-west-2:256063301105:function:1-e2e-test-141913",
+        "name": "1-e2e-test-141913",
+        "region": "us-west-2",
+        "service": "lambda-function",
+        "url": "https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2#/functions/1-e2e-test-141913"
+    },
+    {
+        "counter": 2,
+        "lumigoUrl": "https://platform.lumigo.io/invocations/arn:aws:lambda:us-west-2:256063301105:function:saart_logs_new-customer-role",
+        "name": "saart_logs_new-customer-role",
+        "region": "us-west-2",
+        "service": "lambda-function",
+        "url": "https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2#/functions/saart_logs_new-customer-role"
+    }
+];
     let innerHtml =  `<input type="text" id="myInput" placeholder="Search for names..">
 <style>
 #myInput {
   background-position: 10px 12px; /* Position the search icon */
   background-repeat: no-repeat; /* Do not repeat the icon image */
-  width: 90%; /* Full-width */
+  width: 44%; /* Full-width */
   font-size: 16px; /* Increase font-size */
   padding: 12px 20px 12px 40px; /* Add some padding */
   border: 1px solid #ddd; /* Add a grey border */
   margin-bottom: 12px; /* Add some space below the input */
+  margin-left: 1%;
+  position: fixed;
+}
+
+#dialogFooter {
+  width: 44%; /* Full-width */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  margin-left: 1%;
+  position: fixed;
+  top: 77%;
+  left: 60%;
 }
 
 #myTable {
@@ -75,6 +176,9 @@ position: fixed; box-shadow: 0px 12px 48px rgba(29, 5, 64, 0.32);
   width: 95%; /* Full-width */
   border: 1px solid #ddd; /* Add a grey border */
   font-size: 18px; /* Increase font-size */
+  margin-left: 2%;
+  margin-top: 6%;
+  margin-bottom: 6%;
 }
 
 #myTable th, #myTable td {
@@ -91,6 +195,11 @@ position: fixed; box-shadow: 0px 12px 48px rgba(29, 5, 64, 0.32);
   /* Add a grey background color to the table header and on hover */
   background-color: #f1f1f1;
 }
+
+.TableRow td:hover {
+  cursor: pointer;
+}
+
 </style>
 
     <table id="myTable">
@@ -98,23 +207,21 @@ position: fixed; box-shadow: 0px 12px 48px rgba(29, 5, 64, 0.32);
         <th style="width:20%;">Service</th>
         <th style="width:55%;">Name</th>
         <th style="width:20%;">Region</th>
-        <th style="width:5%;"><3</th>
+        <th style="width:5%;">♥</th>
       </tr>
       `;
 
-    console.log(history);
     for (let i = 0; i < history.length; i++) {
         const row = history[i];
-        console.log(row);
-        innerHtml += `<tr id="row${i}">
+        innerHtml += `<tr class="TableRow" id="row${i}">
             <td>${row.service}</td>
             <td>${row.name}</td>
             <td>${row.region}</td>
-            <td><a href="${row.lumigoUrl}">Lumigo</a></td>
+            <td><a href="${row.lumigoUrl}"><img border="0" alt="Go Lumigo" src="https://media-exp1.licdn.com/dms/image/C4D0BAQH8yD1ysPfutw/company-logo_200_200/0/1548375614844?e=2147483647&v=beta&t=Asv1wIW1iGgDuHQOpaPfcqYnI7Brq_SDN-8bZ8UpwOQ" width="40" height="40"></a></td>
           </tr>`
     }
-    innerHtml += "</table>";
-    console.log(history);
+    innerHtml += `</table>
+    <div id="dialogFooter">Powered By <img border="0" alt="Go Lumigo" src="https://42vnof42im1n3ecs8l2w7ez1-wpengine.netdna-ssl.com/wp-content/uploads/2022/06/Lumigo-Pride-Logov3-orig.png"></div>`;
 
     modal.innerHTML = innerHtml;
     document.body.appendChild(modal);
