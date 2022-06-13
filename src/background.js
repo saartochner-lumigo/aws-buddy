@@ -37,7 +37,7 @@ function getLumigoUrl(name, region) {
 
 function getAccountId() {  // TODO
     // return document.getElementsByClassName("globalNav-0336")[0].firstChild.childNodes[1].firstChild.data.replace("-", "").replace("-", "");
-    return "256063301105"
+    return "962620209983"
 }
 
 function getResourceLumigoUrl(name) {
