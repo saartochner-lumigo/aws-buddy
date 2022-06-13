@@ -95,7 +95,7 @@ background-color:white;
 position: fixed; box-shadow: 0px 12px 48px rgba(29, 5, 64, 0.32);
 `
     );
-    const history = [...(await getHistoryObjects()), ...mockData];
+    const history = await getHistoryObjects();
     let innerHtml =  `<input type="text" id="myInput" placeholder="Search for names..">
 <style>
 #myInput {
