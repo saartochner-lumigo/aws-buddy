@@ -17,6 +17,7 @@ async function getHistoryObjects() {
 }
 
 async function saveHistoryObjects(historyObjects) {
+    alert("saveHistoryObjects")
     await chrome.storage.local.set({"AWS-HISTORY": historyObjects});
 }
 
@@ -36,8 +37,7 @@ function getLumigoUrl(name, region) {
 }
 
 function getAccountId() {  // TODO
-    // return document.getElementsByClassName("globalNav-0336")[0].firstChild.childNodes[1].firstChild.data.replace("-", "").replace("-", "");
-    return "962620209983"
+    return document.getElementsByClassName("globalNav-0336")[0].firstChild.childNodes[1].firstChild.data.replace("-", "").replace("-", "");
 }
 
 function getResourceLumigoUrl(name) {
