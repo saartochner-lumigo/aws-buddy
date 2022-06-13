@@ -7,13 +7,14 @@
 
 ## How to install:
 
-1. ./bin/build.sh
-2. open the aws console on chrome
-3. Settings -> extensions 
-4. From the top-right click Load unpacked
-5. Navigate to the project/dist/chrome and select
-6. That's it!! you are all set.
-7. now every LAMBDA/ DYNAMODB TABLE/ S3 bucket you visit will be remembered and you can navigate to it using CMD + K
+1. checkout the project
+2. from the project root: ./bin/build.sh
+3. open the aws console on chrome
+4. Settings -> extensions 
+5. From the top-right click Load unpacked
+6. Navigate to the project/dist/chrome and select
+7. That's it!! you are all set.
+8. now every LAMBDA/ DYNAMODB TABLE/ S3 bucket you visit will be remembered and you can navigate to it using CMD + K
 
 ## We encourage everyone to modify, prettify, upgradify and just generally give this project the love it deserves 
 
