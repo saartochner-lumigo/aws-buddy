@@ -15,4 +15,6 @@
 6. That's it!! you are all set.
 7. now every LAMBDA/ DYNAMODB TABLE/ S3 bucket you visit will be remembered and you can navigate to it using CMD + K
 
+## We encourage everyone to modify, prettify, upgradify and just generally give this project the love it deserves 
+
 
