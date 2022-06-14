@@ -17,7 +17,6 @@ async function getHistoryObjects() {
 }
 
 async function saveHistoryObjects(historyObjects) {
-    alert("saveHistoryObjects")
     await chrome.storage.local.set({"AWS-HISTORY": historyObjects});
 }
 
